@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crypto News Of The Day</title>
+    <link rel="stylesheet" href="styles1.css">
+
+</head>
+<body>
+    <h2>Crypto News Of The Day</h2>
+
+    <form action="/articles" method="POST">
+
+    <button type="submit">Save</button>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Image</th>
+                <th>Article Details</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="article : ${allArticles}">
+
+                <td><img th:src="${article.imageurl}" width="100"></td>
+                <td>
+                    <p th:text="'ID: ' + ${article.id}">ID:</p>
+                    <h3 th:text="${article.title}"></h3>
+                    <p th:text="${article.body}"></p>
+                    <p th:text="'Categories: ' + ${article.categories}">Categories:</p>
+                    <p th:text="'Tags: ' + ${article.tags}">Tags:</p>
+                    <p th:text="'Published on: ' + ${article.published_on}"></p>
+                    <p> <a th:href="${article.url}" target = "_blank"> Link </a> </p>
+                    <input type="checkbox" name="selected" th:value="${article.id}" th:text="'save'">
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</form>
+</body>
+</html>
